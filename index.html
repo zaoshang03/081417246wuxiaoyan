@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>081417246吴小燕</title>
+    <!--用来加载外部资源用的标签-->
+    <!--相对路径 绝对路径-->
+    <link rel="short icon" href="Resource/icon.png">
+    <link rel="stylesheet" href="ExternalStyle.css">
+</head>
+<style>
+    .i_head_div {
+        text-align: center;
+    }
+
+    .i_head_div  img{
+        margin-top: 50px;
+    }
+
+    .i_inner_div {
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        width: 90%;
+        margin: 0 auto;
+        background: white;
+        height: 100px;
+        margin-top: 30px;
+
+    }
+
+    .i_inner_div div span {
+        padding-left: 15px;
+        font-size: 20px;
+        line-height: 50px
+    }
+
+    .L_form_inner_div div {
+        height: 50px;
+
+    }
+
+    .i_login_div {
+        height: 50px;
+        background: rgb(36, 92, 161);
+        width: 90%;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 20px;
+        text-align: center
+    }
+
+    .i_login_btn {
+        line-height: 50px;
+        height: 50px;
+        color: white;
+        font-size: 20px;
+        width: 100%
+    }
+    input {
+        outline: medium;
+        background-color: transparent;
+        border: 0
+    }
+</style>
+<body>
+<!--第一部分-->
+<!--语义化标签：标签本身没有专门的意义，它主要是用来增强程序的可读性-->
+<!--span标签用来存放少量文字-->
+<header>
+    <span>登录</span>
+</header>
+
+
+<!--第二部分-->
+<div class="i_head_div">
+    <img src="Resource/head.png" alt="">
+</div>
+
+
+<!--第三部分-->
+<form action="">
+    <div class="i_inner_div">
+        <div style="border: 1px solid #dddddd">
+                <span>账号名:</span>
+                <input id="i_account" type="text" name="account"><br>
+        </div>
+        <div >
+                <span>密码:</span>
+                <input id="i_pwd" type="password" name="password"><br>
+        </div>
+    </div>
+    <div>
+        <div class="i_login_div">
+            <input class="i_login_btn" id="i_btn" type="button" value="登录"  >
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http-request.js"></script>
+
+    <script>
+        var btn = document.getElementById("i_btn");
+        btn.onclick=function () {
+            var userName = encodeURIComponent(document.getElementById("i_account").value);
+            var pwd = encodeURIComponent(document.getElementById("i_pwd").value);
+            var par = "username=" + userName + "&pwd=" + pwd;
+
+            // var str = requestMethod('post','login',par);
+
+            // var callback  = function (obj) {
+            //     if (str == "登录成功") {
+            //         location.href = "DropletService.html";
+            //     } else {
+            //         alert(str);
+            //     }
+            // };
+            // var dd ;
+            // callback(dd);
+
+            requestMethod('post','login',par,function (str) {
+                if (str == "登录成功") {
+                    location.href = "DropletService.html";
+                } else {
+                    alert(str);
+                }
+            });
+
+            // var userName=encodeURIComponent(document.getElementById("i_account").value);
+            // var pwd=encodeURIComponent(document.getElementById("i_pwd").value);
+            // var xhr1=new XMLHttpRequest();
+            // xhr1.open('get','https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/aboutus');
+            // xhr1.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            // var par1="username="+userName+"&pwd="+pwd
+            // xhr1.send(par1);
+            // xhr1.onreadystatechange=function(){
+            //     if(xhr1.readyState==4 && xhr1.status==200){
+            //         var responseData1=JSON.parse(xhr1.responseText);
+            //         var str1=responseData1.data;
+            //     }
+            // }
+        };
+    </script>
+</form>
+</body>
+</html>
